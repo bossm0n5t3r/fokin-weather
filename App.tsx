@@ -1,6 +1,8 @@
 import React from 'react';
 import Loading from './Loading';
 
-export default function App() {
+const App = () => {
   return <Loading />;
 }
+
+export default App;
