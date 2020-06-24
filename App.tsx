@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Alert } from 'react-native';
 import Loading from './Loading';
-import Weather, { CONDITION } from './Weather';
+import Weather from './Weather';
 import * as Location from 'expo-location';
 import axios from 'axios';
 
@@ -10,7 +10,7 @@ const API_KEY = "718553c22b382b8afd28a6464c63deb3"
 const App = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [temp, setTemp] = useState<number>(0);
-  const [condition, setCondition] = useState<string>(CONDITION.Clear);
+  const [condition, setCondition] = useState<string>('');
 
   const getWeather = async(latitude : number, longitude : number) => {
     const { data: {main: {temp}, weather} } = await axios.get(
