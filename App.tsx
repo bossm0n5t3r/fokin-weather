@@ -13,7 +13,7 @@ const App = () => {
   const [condition, setCondition] = useState<string>('');
 
   const getWeather = async(latitude : number, longitude : number) => {
-    const { data: {main: {temp}, weather} } = await axios.get(
+    const { data: { main: { temp }, weather } } = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
     )
     console.log(weather[0].main);
