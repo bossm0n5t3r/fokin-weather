@@ -51,7 +51,9 @@ const weatherOptions = {
   },
   Atmosphere: {
     iconName: "weather-hail",
-    gradient: ["#89F7FE", "#66A6FF"]
+    gradient: ["#89F7FE", "#66A6FF"],
+    title: "",
+    subtitle: ""
   },
   Mist: {
     iconName: "weather-hail",
@@ -117,7 +119,10 @@ const Weather = ({ temp, condition } : IWeather) => {
         />
         <Text style={styles.temp}>{temp}˚</Text>
       </View>
-      <View style={styles.halfContainer}></View>
+      <View style={{...styles.halfContainer, ...styles.textContainer}}>
+        <Text style={styles.title}>{weatherOptions[condition].title}</Text>
+        <Text style={styles.subtitle}>{weatherOptions[condition].subtitle}</Text>
+      </View>
     </LinearGradient>
   );
 }
@@ -126,16 +131,31 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   halfContainer: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+  },
+  textContainer: {
+    paddingHorizontal: 20,
+    alignItems: "flex-start",
   },
   temp: {
     fontSize: 40,
-    color: "white"
+    color: "white",
+  },
+  title: {
+    color: "white",
+    fontSize: 44,
+    fontWeight: "300",
+    marginBottom: 10,
+  },
+  subtitle: {
+    color: "white",
+    fontWeight: "600",
+    fontSize: 24,
   }
 })
 
