@@ -8,6 +8,7 @@ import axios from 'axios';
 const API_KEY = "718553c22b382b8afd28a6464c63deb3"
 
 const App = () => {
+  const [location, setLocation] = useState<Location.LocationData>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [temp, setTemp] = useState<number>(0);
   const [condition, setCondition] = useState<CONDITION>(CONDITION.Clear);
@@ -21,9 +22,9 @@ const App = () => {
     setCondition(weather[0].main);
   }
 
-  const getLocation = async() => {
+  const getLocation = async(location: Location.LocationData) => {
     try {
-      const { coords: { latitude, longitude } } = await Location.getCurrentPositionAsync();
+      const { coords: { latitude, longitude } } = location;
       await getWeather(latitude, longitude);
       setIsLoading(false);
     } catch (error) {
@@ -32,7 +33,16 @@ const App = () => {
   }
 
   useEffect(() => {
-    getLocation();
+    (async () => {
+      let { status } = await Location.requestPermissionsAsync();
+      if (status !== 'granted') {
+        Alert.alert('Permission to access location was denied');
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+      getLocation(location);
+    })();
   }, []);
 
   return (
