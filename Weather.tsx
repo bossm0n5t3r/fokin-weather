@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export enum CONDITION {
   Thunderstorm = 'Thunderstorm',
@@ -28,8 +29,12 @@ interface IWeather {
 const Weather = ({ temp, condition } : IWeather) => {
   return (
     <View style={styles.container}>
-      <Text>{temp}</Text>
-      <Text>{condition}</Text>
+      <View style={styles.halfContainer}>
+        <MaterialCommunityIcons name="weather-lightning-rainy" size={100} color="black" />
+        <Text style={styles.temp}>{temp}o</Text>
+        <Text>{condition}</Text>
+      </View>
+      <View style={styles.halfContainer}></View>
     </View>
   );
 }
@@ -39,6 +44,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center"
+  },
+  halfContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  temp: {
+    fontSize: 40,
   }
 })
 
