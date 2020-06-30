@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Button, Alert } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -112,6 +112,10 @@ const Weather = ({ temp, condition } : IWeather) => {
         style={styles.container}>
       <StatusBar barStyle="light-content" />
       <View style={styles.halfContainer}>
+        <Button
+          title="Press me"
+          onPress={() => Alert.alert('Simple Button pressed')}
+        ></Button>
         <MaterialCommunityIcons
           name={weatherOptions[condition].iconName}
           size={100}
